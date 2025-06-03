@@ -7,14 +7,15 @@ const Nav = () => {
   return (
     <nav>
       <div className='logo-container'>
-        <img className='logo-icon' src={Logo} />
-        <h4>Ventixe</h4>
+        <NavLink className="logo-link" to={"/"}>
+          <img className='logo-icon' src={Logo} />
+          <h4>Ventixe</h4>
+        </NavLink>
       </div>
-      {/* Nav {window.location.pathname} */}
       <NavLink className='nav-link' to={"/events"}>
-      <div className="nav-icon">
-        <img src={Ticket} />
-      </div>
+        <div className="nav-icon">
+          <img src={Ticket} />
+        </div>
         <span className='nav-text'>Events</span>
       </NavLink>
       <NavLink className='nav-link' to={"/bookings"}>

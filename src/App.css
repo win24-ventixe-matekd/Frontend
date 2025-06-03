@@ -188,6 +188,11 @@ nav {
         h4 {
             display: none;
         }
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
     }
     @media (width >= 768px) { & {
         display: flex;
@@ -208,14 +213,18 @@ nav {
 main {
     grid-area: main;
     padding: 1rem;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content;
     gap: 1.5rem;
     border-radius: 1rem;
     background-color: var(--grey-20);
     @media (width >= 768px) { & {
         padding: 1.5rem;
     } }
+    @media (width >= 1400px) { & {
+        grid-template-columns: 3fr 2fr;
+    }}
 }
 
 footer {
@@ -329,7 +338,7 @@ footer {
     flex-direction: column;
     gap: .75rem;
     width: 280px;
-    min-height: 380px;
+    /* min-height: 380px; */
     padding: 1rem;
     .img {
         background-color: var(--grey-40);
@@ -340,9 +349,9 @@ footer {
         font-weight: var(--font-semi-bold);
     }
     .bottom {
-        display: flex;
+        /* display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 1rem; */
     }
     .price {
         color: var(--primary-100);
@@ -355,8 +364,7 @@ footer {
 }
 
 .event-detail {
-    max-width: 768px;
-    /* align-self: center; */
+    height: fit-content;
     .top {
         height: 200px;
         width: 100%;
@@ -380,7 +388,13 @@ footer {
     .price {
         border-top: 1px solid var(--grey-30);
         padding-block: 1rem .5rem;
-        color: var(--primary-100);
+        p {
+            font-size: 10px;
+            color: var(--grey-70);
+        }
+        h6 {
+            color: var(--primary-100);
+        }
     }
     .about {
         border-top: 1px solid var(--grey-30);
@@ -410,6 +424,7 @@ footer {
             justify-content: space-between;
         }
         .price {
+            text-align: right;
             border: none;
             padding: 0;
         }
@@ -418,6 +433,68 @@ footer {
             max-width: 300px;
         }
     } }
+}
+
+.packages {
+    display: flex;flex-direction: column;
+    gap: 1rem;
+    height: fit-content;
+    padding: 1rem;
+    background-color: var(--grey-10);
+    border-radius: 1rem;
+    .header {
+        font-weight: var(--font-semi-bold);
+    }
+    .list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    @media (width >= 768px) { & .list {
+        grid-template-columns: 1fr 1fr;
+    }}
+    @media (width >= 1400px) { & .list {
+        grid-template-columns: 1fr;
+    }}
+}
+.event-package {
+    display: grid;
+    grid-template-areas: 
+        "name name price"
+        "seating desc desc"
+    ;
+    grid-template-columns: auto 1fr auto;
+    row-gap: .5rem;
+    column-gap: 1rem;
+    padding: 1rem;
+    background-color: var(--grey-20);
+    border-radius: 1rem;
+    .name {
+        grid-area: name;
+        font-weight: var(--font-semi-bold);
+    }
+    .seating {
+        grid-area: seating;
+        color: var(--grey-80);
+        font-size: .75rem;
+    }
+    .description {
+        grid-area: desc;
+        color: var(--grey-80);
+        font-size: .75rem;
+    }
+    .price {
+        grid-area: price;
+        align-self: center;
+        color: var(--primary-100);
+        font-weight: var(--font-medium);
+    }
+    @media (width >= 1400px) { & {
+        grid-template-areas: 
+            "name name price"
+            "seating desc price"
+        ;
+    }}
 }
 
 .btn {

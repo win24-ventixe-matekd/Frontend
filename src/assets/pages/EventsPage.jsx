@@ -11,9 +11,9 @@ const Events = () => {
 
   return (
     <>
-      <div className="main-header">
+      {/* <div className="main-header">
         <h4>Placeholder</h4>
-      </div>
+      </div> */}
       <EventList />
     </>
   )
