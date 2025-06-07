@@ -222,9 +222,6 @@ main {
     @media (width >= 768px) { & {
         padding: 1.5rem;
     } }
-    @media (width >= 1400px) { & {
-        grid-template-columns: 3fr 2fr;
-    }}
 }
 
 footer {
@@ -325,7 +322,6 @@ footer {
     gap: .75rem;
 }
 .event-item, .event-detail {
-    background-color: var(--grey-10);
     border-radius: 1rem;
     overflow: hidden;
     .time, .location {
@@ -340,6 +336,7 @@ footer {
     width: 280px;
     /* min-height: 380px; */
     padding: 1rem;
+    background-color: var(--grey-10);
     .img {
         background-color: var(--grey-40);
         height: 200px;
@@ -364,7 +361,13 @@ footer {
 }
 
 .event-detail {
-    height: fit-content;
+    display: grid;
+    gap: 1rem;
+    .event {
+        border-radius: 1rem;
+        overflow: hidden;
+        background-color: var(--grey-10);
+    }
     .top {
         height: 200px;
         width: 100%;
@@ -408,9 +411,9 @@ footer {
             color: var(--grey-90);
         }
     }
-    .btn {
+    /* .btn {
         margin-top: 1rem;
-    }
+    } */
 
     @media (width >= 768px) { & {
         .top {
@@ -433,6 +436,9 @@ footer {
             max-width: 300px;
         }
     } }
+    @media (width >= 1400px) { & {
+        grid-template-columns: 3fr 2fr;
+    }}
 }
 
 .packages {
@@ -471,6 +477,7 @@ footer {
     border-radius: 1rem;
     .name {
         grid-area: name;
+        color: var(--text-color);
         font-weight: var(--font-semi-bold);
     }
     .seating {
@@ -495,6 +502,10 @@ footer {
             "seating desc price"
         ;
     }}
+    &:hover, &:focus {
+        border: 2px solid var(--primary-100);
+        padding: .875rem;
+    }
 }
 
 .btn {
@@ -529,5 +540,29 @@ a.return {
         height: fit-content;
         width: fit-content;
         content: '<-';
+    }
+}
+
+.book-event {
+    display: grid;
+    padding: 1rem;
+    background-color: var(--grey-10);
+    border-radius: 1rem;
+    .book-form {
+        display: grid;
+        gap: 1rem;
+        padding: 1rem;
+        background-color: var(--grey-20);
+        border-radius: 1rem;
+        label {
+            display: grid;
+            gap: .5rem;
+            input {
+                height: 40px;
+                padding: .5rem 1rem;
+                border: none;
+                border-radius: 20px;
+            }
+        }
     }
 }

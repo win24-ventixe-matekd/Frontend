@@ -1,6 +1,7 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
-const EventPackage = ({name, price, currency, seating, description}) => {
+const EventPackage = ({id, name, price, currency, seating, description}) => {
   const formatCurrency = () => {
     if (currency === "$")
       return `${currency}${price}`
@@ -8,12 +9,12 @@ const EventPackage = ({name, price, currency, seating, description}) => {
   }
 
   return (
-    <div className='event-package'>
+    <NavLink className='event-package' to={`/events/booking/${id}`}>
       <p className="name">{name}</p>
       <p className="seating">{seating}</p>
       <p className="description">{description}</p>
       <p className="price">{formatCurrency()}</p>
-    </div>
+    </NavLink>
   )
 }
 

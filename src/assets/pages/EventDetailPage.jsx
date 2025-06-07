@@ -59,37 +59,41 @@ const EventDetail = () => {
   return (
     <>
       <div className='event-detail'>
-        <div className='top'></div>
 
-        <div className="main">
-          <h4 className='title'>{event.title}</h4>
+        <div className="event">
+          <div className='top'></div>
 
-          <div className="middle">
-            <div className='when-where'>
-              <p className='time'>{getDate(event.date)}</p>
-              <p className='location'>{event.location}</p>
+          <div className="main">
+            <h4 className='title'>{event.title}</h4>
+
+            <div className="middle">
+              <div className='when-where'>
+                <p className='time'>{getDate(event.date)}</p>
+                <p className='location'>{event.location}</p>
+              </div>
+              {/* Lowest package price / free? */}
+              <div className="price">
+                <p>Starts from</p>
+                <h6>{getLowestPrice()}</h6>
+              </div>
             </div>
-            {/* Lowest package price / free? */}
-            <div className="price">
-              <p>Starts from</p>
-              <h6>{getLowestPrice()}</h6>
+
+            <div className="about">
+              <h6>About {event.title}</h6>
+              <p className="description">{event.description}</p>
             </div>
-          </div>
 
-          <div className="about">
-            <h6>About {event.title}</h6>
-            <p className="description">{event.description}</p>
+            {/* <button className='btn primary'>Book</button> */}
           </div>
-
-          <button className='btn primary'>Book</button>
         </div>
-      </div>
-      <div className="packages">
-        <p className='header'>Packages</p>
-        <div className="list">
-          {event.packages.length > 0 && event.packages.map(eventPackage => (
-            <EventPackage key={eventPackage.id} {...eventPackage} />
-          ))}
+
+        <div className="packages">
+          <p className='header'>Packages</p>
+          <div className="list">
+            {event.packages.length > 0 && event.packages.map(eventPackage => (
+              <EventPackage key={eventPackage.id} {...eventPackage} />
+            ))}
+          </div>
         </div>
       </div>
     </>

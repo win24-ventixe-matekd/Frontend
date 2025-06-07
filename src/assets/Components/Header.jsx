@@ -13,6 +13,8 @@ const Header = () => {
         return <NavLink to={"/events"} className='return'><h4>{page}</h4></NavLink>
       case "Booking Details":
         return <NavLink to={"/bookings"} className='return'><h4>{page}</h4></NavLink>
+      case "Book Event":
+        return <NavLink to={"/events"} className='return'><h4>{page}</h4></NavLink>
       default:
         return <h4>{page}</h4>
     }

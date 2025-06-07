@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from '../images/ventixe-logo.svg'
 import Ticket from '../images/Ticket.svg'
+import Check from '../images/CheckSquare.svg'
 import { NavLink } from 'react-router-dom'
 
 const Nav = () => {
@@ -20,7 +21,7 @@ const Nav = () => {
       </NavLink>
       <NavLink className='nav-link' to={"/bookings"}>
         <div className="nav-icon">
-          <img src={Ticket} />
+          <img src={Check} />
         </div>
         <span className='nav-text'>Bookings</span>
       </NavLink>
