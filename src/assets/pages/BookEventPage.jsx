@@ -29,8 +29,6 @@ const BookEvent = () => {
   })
 
   const fetchData = async () => {
-    // get from package controller
-    // package.evevt
     const res = await fetch(`https://eventservice-matekd.azurewebsites.net/api/Packages/${id}`)
     if (res.ok) {
       const response = await res.json()

@@ -24,8 +24,25 @@ const BookingDetailPage = () => {
     fetchData()
   }, [])
 
+  const formatCurrency = (currency, price) => {
+    if (currency === "$")
+      return `${currency}${price}`
+    return `${price}${currency}`
+  }
+
   return (
-    <div>BookingDetailPage</div>
+    <>
+      {booking !== null &&
+      <div className="detail">
+        <p className="date">{Date(booking.eventDate)}</p>
+        <p className="full-name">{booking.firstName} {booking.lastName}</p>
+        <p className="event">{booking.eventName}</p>
+        <p className="package-name">{booking.packageName}</p>
+        <p className="price">{formatCurrency(booking.currency, booking.packagePrice)}</p>
+        <p className="amount">Qty: {booking.amount}</p>
+      </div>
+      }
+    </>
   )
 }
 

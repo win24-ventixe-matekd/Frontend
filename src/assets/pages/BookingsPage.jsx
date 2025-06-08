@@ -26,7 +26,7 @@ const Bookings = () => {
   return (
     <section className='booking-list'>
       {bookings.length > 0 && bookings.map(booking => (
-        <BookingItem key={booking.id} {...booking} />
+        <BookingItem key={booking.id} {...booking} firstName={booking.user.firstName} lastName={booking.user.lastName}  />
       ))}
     </section>
   )

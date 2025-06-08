@@ -345,11 +345,11 @@ footer {
     .title {
         font-weight: var(--font-semi-bold);
     }
-    .bottom {
-        /* display: flex;
+    /* .bottom {
+        display: flex;
         align-items: center;
-        gap: 1rem; */
-    }
+        gap: 1rem;
+    } */
     .price {
         color: var(--primary-100);
         font-size: 1.125rem;
@@ -590,5 +590,28 @@ a.return {
         background-color: var(--grey-20);
         padding: .5rem;
         border-radius: 13px;
+    }
+}
+.booking-list {
+    display: grid;
+    gap: 1rem;
+}
+.booking, .detail {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1rem;
+    background-color: var(--grey-10);
+    padding: 1rem;
+    border-radius: 1rem;
+    a {
+        background-color: var(--grey-10);
+        color: var(--primary-100);
+        padding: .5rem;
+        border-radius: 1rem;
+        &:hover, &:focus {
+            background-color: var(--primary-100);
+            color: var(--grey-10);
+        }
     }
 }
