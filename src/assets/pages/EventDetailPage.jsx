@@ -5,20 +5,7 @@ import EventPackage from '../Components/EventPackage'
 
 const EventDetail = () => {
   const {id} = useParams()
-  const [event, setEvent] = useState(
-    {
-      id: 1, 
-      title: "Test Festival", 
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ullam officia nobis provident. Accusantium repellat tempore, ratione eos possimus veniam suscipit in harum at, delectus doloremque. Deserunt iste fugiat illum alias error deleniti officia ab perspiciatis, adipisci officiis pariatur qui.",
-      location: "Building, City, Country",
-      date: Date.now(),
-      packages: [
-        {id: 1, name: "usus", price: 100, currency: "$", seating: "standing", description: ""},
-        {id: 2, name: "ukuk", price: 20, currency: "£", seating: "sitting", description: "test"},
-        {id: 3, name: "eueu", price: 30, currency: "€", seating: "sitting", description: "Lorem ipsum dolor, sit amet consectetur adipisicing."},
-      ]
-    }
-  )
+  const [event, setEvent] = useState(null)
 
   const {setPage} = useContext(PageContext)
   useEffect(() => {
@@ -44,57 +31,59 @@ const EventDetail = () => {
   }
 
   const fetchData = async () => {
-    const res = await fetch("")
+    const res = await fetch(`https://eventservice-matekd.azurewebsites.net/api/Events/${id}`)
     if (res.ok) {
       const response = await res.json()
-
+      
       setEvent(response.result)
     }
   }
 
   useEffect(() => {
-    // fetchData()
+    fetchData()
   }, [])
 
   return (
     <>
       <div className='event-detail'>
+        {event !== null && 
+          <div className="event">
+            <div className='top'></div>
 
-        <div className="event">
-          <div className='top'></div>
+            <div className="main">
+              <h4 className='title'>{event.title}</h4>
 
-          <div className="main">
-            <h4 className='title'>{event.title}</h4>
-
-            <div className="middle">
-              <div className='when-where'>
-                <p className='time'>{getDate(event.date)}</p>
-                <p className='location'>{event.location}</p>
+              <div className="middle">
+                <div className='when-where'>
+                  <p className='time'>{getDate(event.date)}</p>
+                  <p className='location'>{event.location}</p>
+                </div>
+                {/* Lowest package price / free? */}
+                <div className="price">
+                  <p>Starts from</p>
+                  <h6>{getLowestPrice()}</h6>
+                </div>
               </div>
-              {/* Lowest package price / free? */}
-              <div className="price">
-                <p>Starts from</p>
-                <h6>{getLowestPrice()}</h6>
+
+              <div className="about">
+                <h6>About {event.title}</h6>
+                <p className="description">{event.description}</p>
               </div>
+
+              {/* <button className='btn primary'>Book</button> */}
             </div>
-
-            <div className="about">
-              <h6>About {event.title}</h6>
-              <p className="description">{event.description}</p>
+          </div>
+        }
+        {(event !== null && event.packages.length > 0) &&
+          <div className="packages">
+            <p className='header'>Packages</p>
+            <div className="list">
+              {event.packages.length > 0 && event.packages.map(eventPackage => (
+                <EventPackage key={eventPackage.id} {...eventPackage} />
+              ))}
             </div>
-
-            {/* <button className='btn primary'>Book</button> */}
           </div>
-        </div>
-
-        <div className="packages">
-          <p className='header'>Packages</p>
-          <div className="list">
-            {event.packages.length > 0 && event.packages.map(eventPackage => (
-              <EventPackage key={eventPackage.id} {...eventPackage} />
-            ))}
-          </div>
-        </div>
+        }
       </div>
     </>
   )

@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 const EventItem = ({id, title, location, date}) => {
   const getDate = () => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    date = new Date(date)
     let minutes = date.getMinutes()
     if (minutes.toString().length === 1)
       minutes = "0" + minutes

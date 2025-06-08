@@ -4,13 +4,7 @@ import { PageContext } from '../contexts/PageContext'
 
 const BookEvent = () => {
   const {id} = useParams()
-  const [selectedPackage, setSelectedPackage] = useState({
-    event: {
-      title: "",
-      date: "",
-      location: "",
-    }
-  })
+  const [selectedPackage, setSelectedPackage] = useState(null)
   
   const {setPage} = useContext(PageContext)
   useEffect(() => {
@@ -36,7 +30,7 @@ const BookEvent = () => {
   const fetchData = async () => {
     // get from package controller
     // package.evevt
-    const res = await fetch(`${id}`)
+    const res = await fetch(`https://eventservice-matekd.azurewebsites.net/api/Packages/${id}`)
     if (res.ok) {
       const response = await res.json()
 
@@ -45,11 +39,11 @@ const BookEvent = () => {
   }
 
   useEffect(() => {
-    // fetchData()
+    fetchData()
   }, [])
 
   const postBooking = async () => {
-    const res = await fetch("", {
+    const res = await fetch("https://bookingservice-matekd.azurewebsites.net/api/Bookings", {
       method: "POST",
       headers: {
         'Content-Type': "application/json"
@@ -81,38 +75,40 @@ const BookEvent = () => {
         <h6 className="package-name">Package</h6>
         <p className="price">123kr</p>
       </div>
-      <form className="book-form" onSubmit={handleSubmit} noValidate>
-        <input type="hidden" value={selectedPackage.event.title} name='eventName' />
-        <input type="hidden" value={selectedPackage.event.date} name='eventDate' />
-        <input type="hidden" value={selectedPackage.event.location} name='eventLocation' />
-        <input type="hidden" value={selectedPackage.name} name='packageName' />
-        <input type="hidden" value={selectedPackage.price} name='packagePrice' />
-        <input type="hidden" value={selectedPackage.currency} name='currency' />
+      {selectedPackage !== null &&
+        <form className="book-form" onSubmit={handleSubmit} noValidate>
+          <input type="hidden" value={selectedPackage.event.title} name='eventName' />
+          <input type="hidden" value={selectedPackage.event.date} name='eventDate' />
+          <input type="hidden" value={selectedPackage.event.location} name='eventLocation' />
+          <input type="hidden" value={selectedPackage.name} name='packageName' />
+          <input type="hidden" value={selectedPackage.price} name='packagePrice' />
+          <input type="hidden" value={selectedPackage.currency} name='currency' />
 
-        <label>Amount
-          <input type="number" defaultValue={1} value={selectedPackage.amount} name='amount' onChange={handleChange} required />
-        </label>
-        <label> First Name
-          <input type="text" value={selectedPackage.firstName} name='firstName' onChange={handleChange} required />
-        </label>
-        <label> Last Name
-          <input type="text" value={selectedPackage.lastName} name='lastName' onChange={handleChange} required />
-        </label>
-        <label> Email
-          <input type="email" value={selectedPackage.email} name='email' onChange={handleChange} required />
-        </label>
-        <label> Street Name
-          <input type="text" value={selectedPackage.streetName} name='streetName' onChange={handleChange} required />
-        </label>
-        <label> Postal Code
-          <input type="text" value={selectedPackage.postalCode} name='postalCode' onChange={handleChange} required />
-        </label>
-        <label> City
-          <input type="text" value={selectedPackage.city} name='city' onChange={handleChange} required />
-        </label>
+          <label>Amount
+            <input type="number" defaultValue={1} value={selectedPackage.amount} name='amount' onChange={handleChange} required />
+          </label>
+          <label> First Name
+            <input type="text" value={selectedPackage.firstName} name='firstName' onChange={handleChange} required />
+          </label>
+          <label> Last Name
+            <input type="text" value={selectedPackage.lastName} name='lastName' onChange={handleChange} required />
+          </label>
+          <label> Email
+            <input type="email" value={selectedPackage.email} name='email' onChange={handleChange} required />
+          </label>
+          <label> Street Name
+            <input type="text" value={selectedPackage.streetName} name='streetName' onChange={handleChange} required />
+          </label>
+          <label> Postal Code
+            <input type="text" value={selectedPackage.postalCode} name='postalCode' onChange={handleChange} required />
+          </label>
+          <label> City
+            <input type="text" value={selectedPackage.city} name='city' onChange={handleChange} required />
+          </label>
 
-        <button className='btn primary' type="submit">Book</button>
-      </form>
+          <button className='btn primary' type="submit">Book</button>
+        </form>
+      }
     </div>
   )
 }
