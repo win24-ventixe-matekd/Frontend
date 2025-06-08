@@ -562,7 +562,33 @@ a.return {
                 padding: .5rem 1rem;
                 border: none;
                 border-radius: 20px;
+                font-size: 1rem;
             }
         }
+    }
+}
+
+.info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .5rem;
+    padding-bottom: 1rem;
+    grid-template-areas: 
+        "event event"
+        "package price"
+    ;
+    .event-name {
+        grid-area: event;
+    }
+    .package-name {
+        grid-area: package;
+    }
+    .price {
+        grid-area: price;
+        justify-self: right;
+        color: var(--primary-100);
+        background-color: var(--grey-20);
+        padding: .5rem;
+        border-radius: 13px;
     }
 }
